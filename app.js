@@ -78,7 +78,7 @@ app.put("/players/:playerId/", async (request, response) => {
 app.delete("/players/:playerId/", async (request, response) => {
   const { playerId } = request.params;
   const query = `delete from cricket_team where player_id=${playerId};`;
-  await db.all(query);
+  await db.run(query);
   response.send("Player Removed");
 });
 
