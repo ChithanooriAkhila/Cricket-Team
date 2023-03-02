@@ -4,6 +4,7 @@ const path = require("path");
 const { open } = require("sqlite");
 const sqlite3 = require("sqlite3");
 const app = express();
+app.use(express.json());
 
 const dbPath = path.join(__dirname, "cricketTeam.db");
 
@@ -80,3 +81,5 @@ app.delete("/players/:playerId/", async (request, response) => {
   await db.all(query);
   response.send("Player Removed");
 });
+
+module.exports = app;
