@@ -38,7 +38,7 @@ app.post("/players/", async (request, response) => {
   const { playerName, jerseyNumber, role } = playerDetails;
   const query = `
   insert into
-   cricket_team (playerName,jerseyNumber,role)
+   cricket_team (player_name,jersey_number,role)
    values
    (
        '${playerName}',
@@ -65,8 +65,8 @@ app.put("/players/:playerId/", async (request, response) => {
   update
    cricket_team 
   set 
-  playerName='${playerName}',
-  jerseyNumber=${jerseyNumber},
+  player_name='${playerName}',
+  jersey_number=${jerseyNumber},
   role=${role}'
   where player_id=${playerId}
   ;`;
