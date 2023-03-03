@@ -15,7 +15,7 @@ get http://localhost:4000/players/1
 
 
 ###
-put http://localhost:4000/players/12
+put http://localhost:4000/players/1
 Content-Type: application/json
 
 {
@@ -25,4 +25,4 @@ Content-Type: application/json
 }
 
 ### 
-delete http://localhost:4000/players/13
+delete http://localhost:4000/players/11
