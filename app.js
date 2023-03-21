@@ -30,7 +30,14 @@ initializeDBAndServer();
 app.get("/players/", async (request, response) => {
   const query = `select * from cricket_team;`;
   const playersList = await db.all(query);
-  response.send(playersList);
+
+  const res = playersList.map((player) => ({
+    playerId: player.player_id,
+    playerName: player.player_name,
+    jerseyNumber: player.jersey_number,
+    role: player.role,
+  }));
+  response.send(res);
 });
 
 app.post("/players/", async (request, response) => {
@@ -49,12 +56,17 @@ app.post("/players/", async (request, response) => {
   await db.run(query);
   response.send("Player Added to Team");
 });
-
 app.get("/players/:playerId/", async (request, response) => {
   const { playerId } = request.params;
   const query = `select * from cricket_team where player_id=${playerId};`;
   const playerDetails = await db.get(query);
-  response.send(playerDetails);
+  let obj = {
+    playerId: playerDetails.player_id,
+    playerName: playerDetails.player_name,
+    jerseyNumber: playerDetails.jersey_number,
+    role: playerDetails.role,
+  };
+  response.send(obj);
 });
 
 app.put("/players/:playerId/", async (request, response) => {
